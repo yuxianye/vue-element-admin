@@ -39,6 +39,38 @@ import nestedRouter from './modules/nested'
  * all roles can be accessed
  */
 export const constantRoutes = [
+
+  {
+    path: '/enterprise',
+    component: Layout,
+    redirect: '/enterprise/list',
+    name: '工厂建模',
+    meta: {
+      title: '工厂建模',
+      icon: 'el-icon-s-help'
+    },
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/enterprise/create'),
+        name: 'CreateEnterprise',
+        meta: { title: 'Create Enterprise', icon: 'el-icon-s-help' }
+      },
+      {
+        path: 'edit/:id(\\d+)',
+        component: () => import('@/views/enterprise/edit'),
+        name: 'EditEnterprise',
+        meta: { title: 'Edit Enterprise', noCache: true, activeMenu: '/enterprise/list' },
+        hidden: true
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/enterprise/list'),
+        name: 'EnterpriseList',
+        meta: { title: '企业信息', icon: 'list' }
+      }
+    ]
+  },
   {
     path: '/redirect',
     component: Layout,
